@@ -44,11 +44,9 @@ public class CheckSrv extends HttpServlet {
             con = ds.getConnection();
             st = con.createStatement();
             String qu = "SELECT user_id FROM STUD.USERS WHERE name='" + name + "' AND pwd='" + pwd + "'";
-            System.out.println("------ " + qu);
             ResultSet rs = st.executeQuery(qu);
             if (rs.next()) {
                 userId = rs.getInt("user_id");
-                System.out.println("------ " + userId);
 
             }
             con.close();

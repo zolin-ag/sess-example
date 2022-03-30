@@ -53,8 +53,8 @@ public class Subject {
         return con;
     }
 
-    public void setCon(Connection con) {
-        this.con = con;
+    public void setCon(DataSource ds) throws SQLException {
+        this.con = ds.getConnection();
     }
 
     public void load(int id) throws SQLException {
