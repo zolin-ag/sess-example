@@ -55,7 +55,7 @@ public class CheckSrv extends HttpServlet {
                 session.setAttribute("userId", userId);
                 session.setAttribute("DataSource", ds);
 
-                String path = "/subdir.jsp";
+                String path = "/exam.jsp";
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(path);
                 requestDispatcher.forward(request, response);
             }else {       // если не прошли -----------------------------------

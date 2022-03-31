@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  */
 public class Stud {
 
-    public static final String tableName = "subject";
+    public static final String tableName = "stud";
 
     private int studId;
     private int age;
@@ -74,8 +74,8 @@ public class Stud {
         return con;
     }
 
-    public void setCon(Connection con) {
-        this.con = con;
+    public void setCon(DataSource ds) throws SQLException {
+        this.con = ds.getConnection();
     }
 
     public void load(int id) throws SQLException {
@@ -94,6 +94,25 @@ public class Stud {
         }
         rs.close();
         st.close();
+    }
+    public void load(DataSource ds, int id) throws SQLException {
+        Connection con = ds.getConnection();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT stud_id, age, first_name, last_name FROM " + tableName + " WHERE stud_id = " + id);
+        if (rs.next()) {
+            studId = rs.getInt("stud_id");
+            age = rs.getInt("age");
+            firstName = rs.getString("first_name");
+            lastName = rs.getString("last_name");
+            return;
+        } else {
+            studId = -1;
+            firstName = "";
+            lastName = "";
+        }
+        rs.close();
+        st.close();
+        con.close();
     }
 
     public static void del(DataSource ds, int id) throws SQLException {

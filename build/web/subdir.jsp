@@ -36,7 +36,7 @@
         <form action='#' method="get">
             <table>
                 <tr>
-                    <td align="left"><input type="submit" value="Выбрать"/></td> 
+                    <td align="left"><input type="submit" value="Выбрать" formMethod="get" formAction="exam.jsp"/></td> 
                     <td align="left"><input type="submit" name="create" value="Создать..." formMethod="get" formAction="sub.jsp"/></td>
                 </tr>   
             </table>
@@ -46,7 +46,7 @@
                 <c:forEach var="sub" items="${subDir.subjects}" >
                     <jsp:useBean id="sub" class="beans.Subject" scope="page" />
                     <tr>
-                        <td><input type="radio"  name="rbt" value="${sub.subjectId}" /></td>
+                        <td><input type="radio"  name="sub_rbt" value="${sub.subjectId}" /></td>
                         <td>${sub.name}</td>
                         <td><a href="sub.jsp?id=${sub.subjectId}">Изменить</a></td>
                         <td><a href="subDel?id=${sub.subjectId}">Удалить</a></td>

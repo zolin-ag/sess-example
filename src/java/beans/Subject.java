@@ -57,6 +57,22 @@ public class Subject {
         this.con = ds.getConnection();
     }
 
+    public void load(DataSource ds, int id) throws SQLException {
+        Connection con = ds.getConnection();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT subject_id, name FROM " + tableName + " WHERE subject_id = " + id);
+        if (rs.next()) {
+            subjectId = rs.getInt("subject_id");
+            name = rs.getString("name");
+            return;
+        } else {
+            subjectId = -1;
+            name = "";
+        }
+        rs.close();
+        st.close();
+        con.close();
+    }
     public void load(int id) throws SQLException {
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery("SELECT subject_id, name FROM " + tableName + " WHERE subject_id = " + id);
